@@ -44,12 +44,14 @@ const App = () => {
       .then(res => res.json())
       .then(res => {
         console.log(res);
+        setPost(res)
+
 
       })
   };
   const fetchDate = () => {
     const url = "https://adaorachi.github.io/esetech-assessment-api/game-data.json";
-    const data = { name: title };
+    const data = { first_release_date: date };
     fetch(url, {
       headers: {
         "content-type": "application/json"
@@ -60,7 +62,17 @@ const App = () => {
       .then(res => res.json())
       .then(res => {
         console.log(res);
+        setPost(res)
+      })
+  };
 
+  const clear = () => {
+    const url = "https://adaorachi.github.io/esetech-assessment-api/game-data.json";
+    fetch(url)
+      .then(res => res.json())
+      .then(res => {
+        console.log(res);
+        setPost(res)
       })
   };
 
@@ -90,7 +102,7 @@ const App = () => {
           </div>
           <div>
             <button type="button" onClick={() => fetchTitle()}>Search</button>
-            <button className="ml-5" type="button">Clear</button>
+            <button className="ml-5" onClick={()=>clear()} type="button">Clear</button>
 
           </div>
         </section>
